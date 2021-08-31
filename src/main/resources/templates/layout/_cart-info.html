@@ -1,0 +1,9 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <a class="btn btn-black" th:href="@{/cart/view}">
+        <i class="bi bi-cart" style="font-size: 30px; color: orange;"></i>
+        <div style="font-weight: bold;" class="badge bg-danger">{{cart.count}}</div>
+        <!-- <div th:href="@{/cart/view}" style="font-weight: bold;" class="badge bg-danger">{{cart.count}} items -
+            ${{cart.amount | number :
+            2}}</div> -->
+    </a>
+</div>

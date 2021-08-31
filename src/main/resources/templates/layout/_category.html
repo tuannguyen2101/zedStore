@@ -1,0 +1,14 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <div class="card">
+        <div class="card-header text-center"><i class="bi bi-list-ul"></i> Danh mục</div>
+        <ul class="list-group list-group-flush">
+            <a th:each="c : ${categories}" th:href="@{|/product/list?cid=${c.id}|}" class="list-group-item"
+                style="text-decoration: none;">
+                <div class="row">
+                    <span class="col-10">[[${c.name}]]</span>
+                    <span class="badge col-2">[[${c.getProducts.size}]]</span>
+                </div>
+            </a>
+        </ul>
+    </div>
+</div>

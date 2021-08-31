@@ -1,0 +1,47 @@
+<div xmlns:th="http://www.thymeleaf.org">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-xl d-block">
+
+      <div class="container">
+        <a class="navbar-brand" th:href="@{/product/list}"><i class="bi bi-bug-fill"></i> ZedStore</a>
+        <ul class="navbar-nav navbar-right">
+          <th:block th:unless="${#request.remoteUser}">
+            <li class="nav-item active">
+              <a class="nav-link" th:href="@{/security/login/form}"> Login<span class="sr-only"></span></a>
+            </li>
+          </th:block>
+          <th:block th:if="${#request.remoteUser}">
+            <li class="nav-item active">
+              <a class="nav-link" href="#"><i class="bi bi-person-fill"></i> [[${#request.remoteUser}]]<span
+                  class="glyphicon glyphicon-user"></span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" th:href="@{/security/logoff}"> Logout<span
+                  class="glyphicon glyphicon-log-out"></span></a>
+            </li>
+          </th:block>
+        </ul>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarsExample07XL">
+        <ul class="navbar-nav mr-auto" style="font-size: larger;">
+          <li class="nav-item active">
+            <a class="nav-link" th:href="@{/product/list}">Home <span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/order/list}">My orders</a>
+          </li>
+          <th:block th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/admin/home/index}">Administration</a>
+            </li>
+          </th:block>
+        </ul>
+        <ul class="navbar-nav navbar-right" style="margin-right: 50px;">
+          <li th:replace="/layout/_cart-info.html"></li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</div>

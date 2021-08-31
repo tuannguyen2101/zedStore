@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<body>
+  <main th:object="${item}" class="item-detail">
+
+    <div class="card mb-3" style="padding: 20px;">
+      <div class="row no-gutters">
+        <div class="col-md-7 text-center">
+          <img th:src="@{|/assets/images/*{image}|}" alt="..." style="max-width: 100%;">
+        </div>
+        <div class="col-md-5">
+          <div class="card-body">
+            <h3 class="card-title" th:text="'Name: ' + *{name}">Card title</h3>
+            <p class="card-text" th:text="'Category: ' + *{category.name}"></p>
+            <p class="card-text" th:text="'Price: ' + *{price}"></p>
+            <p class="card-text" th:text="'CreateDate: ' + *{createDate}"></p>
+          </div>
+        </div>
+        <div class="card-body col-md-12 text-right">
+          <div class="btn btn-success col-2" th:attr="ng-click=@{|cart.add(${item.id})|}" style="margin-right: 15px;">
+            <i class="bi bi-cart-plus-fill"> Add to cart</i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card text-center" style="font-size: xx-large; font-weight: bolder;">
+      <div class="card-body">
+        SIMILAR PRODUCTS
+      </div>
+    </div>
+    <div class="row">
+      <div th:each="p : *{category.products}" class="col-sm-4">
+        <div class="card" style="margin-top: 10px;">
+          <a th:href="@{|/product/detail/${p.id}|}" style="min-height: 253px;">
+            <img th:src="@{|/assets/images/${p.image}|}" class="card-img-top">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title" th:text="${p.name}">Card title</h5>
+          </div>
+          <div class="card-footer">
+            <div class="row">
+              <p class="card-text col-8">$[[${p.price}]]</p>
+              <div class="btn btn-success col-4" th:attr="ng-click=@{|cart.add(${item.id})|}">
+                <i class="bi bi-cart-plus-fill"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
