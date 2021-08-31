@@ -12,6 +12,7 @@
 	<groupId>com.zedStore</groupId>
 	<artifactId>zedStore</artifactId>
 	<version>1.0</version>
+	<packaging>war</packaging>
 	<name>zedStore</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -75,6 +76,7 @@
 	</dependencies>
 
 	<build>
+	<finalName>${artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
